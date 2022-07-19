@@ -1,5 +1,5 @@
 {
-  "name": "reactx-store",
+  "name": "reactx-atom-store",
   "version": "1.0.0",
   "description": "基于react-context的react原子化状态管理器",
   "main": "dist/index.js",
@@ -8,20 +8,31 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/guojiongwei/reactx-store.git"
+    "url": "git+https://github.com/guojiongwei/reactx-atom-store.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/guojiongwei/reactx-store/issues"
+    "url": "https://github.com/guojiongwei/reactx-atom-store/issues"
   },
-  "homepage": "https://github.com/guojiongwei/reactx-store#readme",
+  "homepage": "https://github.com/guojiongwei/reactx-atom-store#readme",
   "devDependencies": {
     "@types/react": "^18.0.15",
     "react": "^18.2.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0"
-  }
+  },
+  "keywords": [
+    "react",
+    "react状态管理器",
+    "reactx-atom-store"
+  ],
+  "author": {
+    "name": "guojiongwei",
+    "email": "18530633992@163.com"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "license": "ISC"
 }
