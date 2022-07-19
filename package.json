@@ -1,0 +1,27 @@
+{
+  "name": "reactx-store",
+  "version": "1.0.0",
+  "description": "基于react-context的react原子化状态管理器",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guojiongwei/reactx-store.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guojiongwei/reactx-store/issues"
+  },
+  "homepage": "https://github.com/guojiongwei/reactx-store#readme",
+  "devDependencies": {
+    "@types/react": "^18.0.15",
+    "react": "^18.2.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  }
+}
