@@ -25,21 +25,13 @@ const user = () => {
   return { userInfo, setUserInfo }
 }
 
-// other
-const other = () => {
-  const [ other, setOther ] = useState<{ age: number }>({ age: 20 })
-  const [ list, setList ] = useState<number[]>([1])
-  return { other, setOther, list, setList }
-}
-
 /** 3. 组合所有状态 */
 const store = createStore(() => ({
   user: user(),
-  other: other(),
 }))
 
 /** 向外暴露useModel和StoreProvider */
-export const { useModel, StoreProvider } = store
+export const { useModel, StoreProvider, getStore } = store
 ```
 
 ### 在顶层注入context
@@ -48,7 +40,7 @@ export const { useModel, StoreProvider } = store
 // src/main.ts
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import App from '@/App'
 // 引入StoreProvider
 import { StoreProvider } from '@/store'
 
@@ -74,7 +66,7 @@ function App() {
   const { userInfo, setUserInfo } = useModel('user')
 
   /** 在点击事件中调用setUserInfo改变状态 */
-  const onChange = () => {
+  const onChangeUser = () => {
     setUserInfo({
       name: userInfo.name + '1',
     })
@@ -82,7 +74,7 @@ function App() {
 
   // jsx中展示userInfo.name
   return (
-    <button onClick={onChange}>{userInfo.name}</button>
+    <button onClick={onChangeUser}>{userInfo.name}--改变user中的状态</button>
   )
 }
 
