@@ -5,7 +5,7 @@
 ### 安装
 
 ```
-npm i reactx-atom-store -D
+npm i reactx-atom-store -S
 ```
 
 ### 配置
