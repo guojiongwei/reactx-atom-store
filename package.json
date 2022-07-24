@@ -1,10 +1,10 @@
 {
   "name": "reactx-atom-store",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "基于react-context的react原子化状态管理器",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "publish": "tsc & npm publish"
   },
   "repository": {
     "type": "git",
