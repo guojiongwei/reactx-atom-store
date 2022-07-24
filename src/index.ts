@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext,  useContext, ComponentType, ComponentProps } from 'react'
 
 /** 创建context组合useState状态Store */
 function createStore<T>(store: () => T) {
@@ -18,7 +18,6 @@ function createStore<T>(store: () => T) {
 
   /** 创建状态注入组件 */
   function StoreProvider(props: { children: React.ReactNode }) {
-
     currentStore = store()
     /** 如果有上次的context状态，做一下浅对比，
      * 如果状态没变，就复用上一次context的value指针，避免context重新渲染
@@ -31,7 +30,6 @@ function createStore<T>(store: () => T) {
       }
     }
     prevStore = currentStore
-
     // eslint-disable-next-line
     let keys: any[] = Object.keys(currentStore)
     let i = 0, length = keys.length
@@ -50,14 +48,31 @@ function createStore<T>(store: () => T) {
   }
 
   /** 获取当前状态, 方便在组件外部使用 */
-  function getStore() {
-    return currentStore
+  function getModel<K extends keyof T>(key: K): T[K] {
+    return currentStore[key]
+  }
+
+  /** 连接Model注入到组件中 */
+  function connectModel<Selected, K extends keyof T>(key: K, selector: (state: T[K]) => Selected) {
+    return function<P, C extends ComponentType<any>>(WarpComponent: C): ComponentType<Omit<ComponentProps<C>, keyof Selected>>{
+      function Connect(props: P) {
+        const val = useModel(key)
+        const state = selector(val)
+        /** @ts-ignore */
+        return React.createElement(WarpComponent, {
+          ...props,
+          ...state
+        })
+      }
+      return Connect as unknown as ComponentType<Omit<ComponentProps<C>, keyof Selected>>
+    }
   }
 
   return {
     useModel,
+    connectModel,
     StoreProvider,
-    getStore
+    getModel,
   }
 }
 
