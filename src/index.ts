@@ -68,11 +68,17 @@ function createStore<T>(store: () => T) {
     }
   }
 
+  /** 获取改变状态的方法，避免只使用方法的组件因为用到了context引起页面渲染 */
+  function useModelMethod<K extends keyof T>(key: K): T[K] {
+    return currentStore[key]
+  }
+
   return {
     useModel,
     connectModel,
     StoreProvider,
     getModel,
+    useModelMethod
   }
 }
 
