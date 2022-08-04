@@ -47,7 +47,7 @@ function createStore<T>(store: () => T) {
     return getContext(keys[i], currentStore, props.children)
   }
 
-  /** 获取当前状态, 方便在组件外部使用 */
+  /** 获取当前状态, 方便在组件外部使用, 在组件那边使用不会引起渲染 */
   function getModel<K extends keyof T>(key: K): T[K] {
     return currentStore[key]
   }
@@ -68,17 +68,11 @@ function createStore<T>(store: () => T) {
     }
   }
 
-  /** 获取改变状态的方法，避免只使用方法的组件因为用到了context引起页面渲染 */
-  function useModelMethod<K extends keyof T>(key: K): T[K] {
-    return currentStore[key]
-  }
-
   return {
     useModel,
     connectModel,
     StoreProvider,
-    getModel,
-    useModelMethod
+    getModel
   }
 }
 
