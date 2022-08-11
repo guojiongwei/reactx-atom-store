@@ -99,6 +99,7 @@ import { connectModel } from '@/store'
 interface IClassDemoProps {
   setOther: React.Dispatch<React.SetStateAction<string>>
   other: number
+  num: number
 }
 
 class ClassDemo extends Component<IClassDemoProps> {
@@ -109,6 +110,7 @@ class ClassDemo extends Component<IClassDemoProps> {
   }
 
   render() {
+    console.log(this.props.num)
     // 通过this.props获取到状态进行展示
     return <button onClick={this.onChange}>{this.props.other}</button>
   }
